@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.4cc832dd.chunk.css",
-    "main.js": "/static/js/main.02164f87.chunk.js",
-    "main.js.map": "/static/js/main.02164f87.chunk.js.map",
+    "main.css": "/static/css/main.1161da13.chunk.css",
+    "main.js": "/static/js/main.b3978ac0.chunk.js",
+    "main.js.map": "/static/js/main.b3978ac0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b240f91f.js",
     "runtime-main.js.map": "/static/js/runtime-main.b240f91f.js.map",
     "static/css/2.dd33d523.chunk.css": "/static/css/2.dd33d523.chunk.css",
     "static/js/2.8c3b2c08.chunk.js": "/static/js/2.8c3b2c08.chunk.js",
     "static/js/2.8c3b2c08.chunk.js.map": "/static/js/2.8c3b2c08.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2b69ecfb589b4f4bde5048f114e286d9.js": "/precache-manifest.2b69ecfb589b4f4bde5048f114e286d9.js",
+    "precache-manifest.cddacb759a06eec019278e3a6dc9fd95.js": "/precache-manifest.cddacb759a06eec019278e3a6dc9fd95.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.dd33d523.chunk.css.map": "/static/css/2.dd33d523.chunk.css.map",
-    "static/css/main.4cc832dd.chunk.css.map": "/static/css/main.4cc832dd.chunk.css.map",
+    "static/css/main.1161da13.chunk.css.map": "/static/css/main.1161da13.chunk.css.map",
     "static/media/about-1-img-1.jpg": "/static/media/about-1-img-1.3bd56029.jpg",
     "static/media/agrikol_iconl.css": "/static/media/icomoon.e1480493.svg",
     "static/media/logo1.png": "/static/media/logo1.a2a5cdbc.png",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.b240f91f.js",
     "static/css/2.dd33d523.chunk.css",
     "static/js/2.8c3b2c08.chunk.js",
-    "static/css/main.4cc832dd.chunk.css",
-    "static/js/main.02164f87.chunk.js"
+    "static/css/main.1161da13.chunk.css",
+    "static/js/main.b3978ac0.chunk.js"
   ]
 }
