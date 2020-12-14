@@ -333,11 +333,12 @@ export class FarmToken extends Component {
           //approve 할 양
           _userRequestAmount  = _userTokenBalance;
           if(_isRunning){
-            if(_stakingAmount == 0){
-              _showApprove = true;
+            if(_stakingAmount > 0){
+             
+              _showApprove = false;
               console.log('10');
             }else{
-              _showApprove = false;
+              _showApprove = true;
               console.log('11');
             }
           }else{
