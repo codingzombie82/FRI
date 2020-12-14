@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.a25af1e2.chunk.css",
+    "main.css": "/static/css/main.0b461807.chunk.css",
     "main.js": "/static/js/main.a3b46e87.chunk.js",
     "main.js.map": "/static/js/main.a3b46e87.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b240f91f.js",
@@ -9,10 +9,10 @@
     "static/js/2.8c3b2c08.chunk.js": "/static/js/2.8c3b2c08.chunk.js",
     "static/js/2.8c3b2c08.chunk.js.map": "/static/js/2.8c3b2c08.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.aa3d15cac6f01e70c2399112da21dcf8.js": "/precache-manifest.aa3d15cac6f01e70c2399112da21dcf8.js",
+    "precache-manifest.15586fbe2bffbd02cde441e64f6cf4b4.js": "/precache-manifest.15586fbe2bffbd02cde441e64f6cf4b4.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.dd33d523.chunk.css.map": "/static/css/2.dd33d523.chunk.css.map",
-    "static/css/main.a25af1e2.chunk.css.map": "/static/css/main.a25af1e2.chunk.css.map",
+    "static/css/main.0b461807.chunk.css.map": "/static/css/main.0b461807.chunk.css.map",
     "static/media/about-1-img-1.jpg": "/static/media/about-1-img-1.3bd56029.jpg",
     "static/media/agrikol_iconl.css": "/static/media/icomoon.e1480493.svg",
     "static/media/logo1.png": "/static/media/logo1.a2a5cdbc.png",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.b240f91f.js",
     "static/css/2.dd33d523.chunk.css",
     "static/js/2.8c3b2c08.chunk.js",
-    "static/css/main.a25af1e2.chunk.css",
+    "static/css/main.0b461807.chunk.css",
     "static/js/main.a3b46e87.chunk.js"
   ]
 }
