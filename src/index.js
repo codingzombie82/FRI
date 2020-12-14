@@ -7,7 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-const baseUrl = '/fri';//document.getElementsByTagName('base')[0].getAttribute('href');
+const baseUrl = '/';//document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
