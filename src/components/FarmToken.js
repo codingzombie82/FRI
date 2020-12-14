@@ -311,29 +311,39 @@ export class FarmToken extends Component {
           _showUnstake = false;
           console.log('7');
         }
-        console.log(apporveTokenBalance);
-        console.log(_userTokenBalance);
+        console.log('apporveTokenBalance :' + apporveTokenBalance);
+        console.log('_userTokenBalance :' + _userTokenBalance);
         console.log('_isRunning : '+ _isRunning);
-        console.log(_stakingAmount);
+        console.log('_stakingAmount : '+_stakingAmount);
         if(Math.abs(apporveTokenBalance) >= Math.abs(_userTokenBalance)){
           _showApprove = false;
-          if(_isRunning && _stakingAmount === 0){
-            _showStake = true;
-            console.log('88');
+          if(_isRunning){
+            if(_stakingAmount > 0){
+              _showStake = false;
+              console.log('88');
+            }else{
+              _showStake = true;
+              console.log('99');
+            }
           }else{
             _showStake = false;
-            console.log('99');
           }
+        
         }else{
           //approve 할 양
           _userRequestAmount  = _userTokenBalance;
-          if(_isRunning && _stakingAmount === 0){
-            _showApprove = true;
-            console.log('10');
+          if(_isRunning){
+            if(_stakingAmount == 0){
+              _showApprove = true;
+              console.log('10');
+            }else{
+              _showApprove = false;
+              console.log('11');
+            }
           }else{
             _showApprove = false;
-            console.log('11');
           }
+          
         }
       }else{ //유저가 토큰이 없다면
         //스테이킹을 하고 있다면
