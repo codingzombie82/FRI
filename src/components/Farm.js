@@ -5,7 +5,11 @@ import Web3 from "web3";
 import PoolInstance from "../contracts/TokenRewardPool.json";
 
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import title_logo from "../asset/logo2.png"
+import title_logo from "../asset/logo2.png";
+
+import '../asset/css/fri.css';
+import leaf from "../asset/images/resources/leaf.png"
+
 export class Farm extends Component {
   static displayName = Farm.name;
   state = { reaminRewardPer : 0, web3: null, accounts: null, 
@@ -93,34 +97,64 @@ export class Farm extends Component {
 
 render() {
     return (
-      <div className="container">  
-        <br/>    
-        <h2>Select a farm</h2>
-        <h4>Earn {ContractInfo.Name} tokens by providing liquidity</h4> 
-        <br/>
-        <div className="row">
-          <div className="col-md-4"></div>         
-          <div className="col-md-4">
-            <div className="border border-light text-center p-5">              
-              <img alt="" src={title_logo}></img>
-              <br/><br/><br/>
-              <h3>{ContractInfo.Symbol} Farm</h3> <br/>
-              <p>Deposit {ContractInfo.Symbol}</p>
-              <p>Earn {ContractInfo.Symbol}</p>
-              <br/>
-              <p className="text-danger">{this.state.rewardRate}% APY</p>
-              <p>{this.state.reaminRewardPer}% of Rewards</p>
-              {/* <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> */}
-              
-              <button className="btn btn-warning" onClick={this.MoveFarmToken}>Select</button>
-            </div>           
-          </div>           
-          <div className="col-md-4"></div>
+      <div>
+        <section className="service_four service_page">
+        <div className="container">
+            {/* <div className="service_four_top"></div> */}
+            <div className="block-title text-center">
+                <p>Select a farm</p>
+                <h3>{ContractInfo.NickName} Farm</h3>
+                <div className="leaf">
+                    <img src={leaf} alt=""/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-xl-4 col-lg-4">
+                    
+                </div>
+                <div className="col-xl-4 col-lg-4">
+                    <div className="service_four_single wow fadeInLeft" data-wow-delay="600ms">
+                        <div className="service_four_icon">
+                            {/* <span className="icon-harvest"></span> */}
+                            <img alt="" src={title_logo}  onClick={this.MoveFarmToken}></img>
+                        </div>
+                        <br/>
+                        <div className="service_four_deatils">
+                            <h3><a href="#" className="service_four_title">Deposit {ContractInfo.Symbol}</a>
+                            </h3>
+                            <h3><a href="#" className="service_four_title">Earn {ContractInfo.Symbol}</a>
+                            </h3>
+                            {ContractInfo.Name} Tokens by providing liquidity.
+                              <br/> <br/>
+                              <h3><a href="#" className="service_four_API">{this.state.rewardRate}% APY</a></h3>
+                            <h3><a href="#" className="service_four_title">{this.state.reaminRewardPer}% of Rewards</a>
+                            </h3><br/>
+                              <button className="thm-btn" onClick={this.MoveFarmToken}>Select</button>
+                              <br/>
+                            <br/>
+                        </div>                        
+                    </div>
+                </div>
+                <div className="col-xl-4 col-lg-4">
+                    
+                </div>
+            </div>
+            <br/>
+            <div className="row">
+              <div className="col-xl-3 col-lg-3">
+                    
+              </div>
+              <div className="col-xl-6 col-lg-6">
+
+              <CopyToClipboard onCopy={this.onCopy} text={ContractInfo.Main.TokenContract}>
+                <p className="text-truncate text-center">{ContractInfo.Symbol} Token : <span>{ContractInfo.Main.TokenContract}</span></p>
+              </CopyToClipboard> 
+              </div>
+              <div className="col-xl-3 col-lg-3">              
+              </div>         
+            </div>
         </div>
-        <br/><br/>
-        <CopyToClipboard onCopy={this.onCopy} text={ContractInfo.Main.TokenContract}>
-        <p className="text-truncate">{ContractInfo.Name} : <span>{ContractInfo.Main.TokenContract}</span></p>
-        </CopyToClipboard>
+        </section>
       </div>
     );
   }

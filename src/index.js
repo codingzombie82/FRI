@@ -7,12 +7,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-const baseUrl = '/';//document.getElementsByTagName('base')[0].getAttribute('href');
+const baseUrl = '/fri';//document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
     <BrowserRouter basename={baseUrl}>
-      <App />
+        <App /> 
     </BrowserRouter>,
     rootElement);
 // If you want your app to work offline and load faster, you can change

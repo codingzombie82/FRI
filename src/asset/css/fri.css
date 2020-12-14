@@ -1,0 +1,37 @@
+.top_bg {
+    background-image: url(../images/shapes/header-bg.png)
+}
+
+.main_topbar_max_width{
+    max-width:320px;  
+}
+.main_image_layer {
+    background-image: url(../images/resources/faq_one_img-1.jpg);
+}
+
+.farm_Token_bg {
+    background-image: url(../images/backgrounds/page-header-contact.jpg);
+}
+
+.table_boarder_class th{
+    border: 1px solid #dee2e6;
+}
+
+.farm_input_margin{
+    margin-left: 10px;
+}
+.connection-btn {
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    background-color: var(--thm-base);
+    font-size: 12px;
+    color: var(--thm-black);
+    font-weight: 600;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}

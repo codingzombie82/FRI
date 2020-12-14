@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ContractInfo from "../ABI/Token.json";
 import TutorialToken from "../contracts/ChangZakSo.json";
 import Web3 from "web3";
 import PoolInstance from "../contracts/TokenRewardPool.json";
-
+import getPrice from "../getPrice";
+import cookie from 'react-cookies'
+import '../asset/css/fri.css';
 export class Stats extends Component {
   static displayName = Stats.name;
+
   state = { 
     priceDalar : 0,
     userStakeAmount: 0, totalPoolAmount: 0, 
@@ -16,12 +19,36 @@ export class Stats extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { userStakeAmount: 0 };
+     this.state = { userStakeAmount: 0};
+     this.AdminInfo = this.AdminInfo.bind(this);
+  }
+
+  AdminInfo() {
+    let path = "AdminInfo"; 
+    this.props.history.push(path);
   }
 
   componentDidMount() {
-    this.setState( this.loadWeb3);
+    this.setState(this.loadWeb3);
+    if(!cookie.load('price')){
+      this.useEffect();
+    }else{
+      this.setState({priceDalar : cookie.load('price')}); 
+    }
+
   }
+
+  useEffect = async () => {
+    try {
+      const value = await getPrice();
+      this.setState({priceDalar : value});   
+      cookie.save('price', value, {maxAge: 60});
+      this.setState(this.loadWeb3);
+    }catch (error) {
+      console.log('useEffect e' + error);
+    } 
+  }
+
 
   async loadWeb3(){ 
     if (window.ethereum) {
@@ -86,7 +113,7 @@ export class Stats extends Component {
 
     var rewardRate = await poolContract.methods.ratePool().call(); 
    
-    var _priceDalar = ContractInfo.Price; 
+    // var _priceDalar = this.getPriceFun();
 
     var _userStakingToTotal = 0;
 
@@ -97,7 +124,7 @@ export class Stats extends Component {
 
     this.setState({
       text: accounts[0],
-      priceDalar : _priceDalar,
+      // priceDalar : _priceDalar,
       userStakeAmount: _userStakeAmount,
       totalPoolAmount : _totalStaked,
       rewardSecond : _rewordSecond, 
@@ -109,104 +136,129 @@ export class Stats extends Component {
     });
   }
 
+
+
+  // async getPriceFun(object) {
+  //   console.log('getPriceFun');
+  //   var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+  //   var x = new XMLHttpRequest();
+  //   var options = {
+  //     method: 'GET',
+  //     url: 'https://api.foblgate.com/public/common/closePriceHistory/?pairName=ETH.KRW&cnt=14&skipIdx=1',
+  //   }
+  //   x.open(options.method, cors_api_url + options.url);
+
+  //    x.onload = x.onerror = function () {  
+  //     // var price = 0;
+  //     if(x.readyState === 4 && x.status === 200){
+  //       var jsonResponse = JSON.parse(x.response);
+  //       console.log('getPrice asdf' + parseFloat(jsonResponse.data.closePriceHistory[0].closePrice));
+  //       var price = parseFloat(jsonResponse.data.closePriceHistory[0].closePrice);
+  //       console.log('getPrice asdf' + price);
+  //       object.state.priceDalar = price;
+  //     }  
+  //   };   
+  //   x.send();
+  // }
+
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3"></div>
 
-          <div className="col-md-6">
-            <br/>
-            <h4>{ContractInfo.Name} staking pool</h4>
-            <br/>
-            <div>
-            <table className="table table-striped table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">PRICES</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1 {ContractInfo.Symbol} = $ {this.state.priceDalar}</th>
-                </tr>
-                <tr>
-                  <th scope="row">1 {ContractInfo.Symbol} = $ {this.state.priceDalar}</th>
-                </tr>
-              </tbody>
-            </table>
-            <table className="table table-striped table-dark">
-              <thead>
-                <tr>
-                 <th scope="col" colSpan="2">STAKING</th>
-               </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">There are total</th>
-                  <th scope="row">{this.state.totalPoolAmount} {ContractInfo.Symbol} staked in {ContractInfo.Name} staking pool = $ {Math.floor(this.state.totalPoolAmount * this.state.priceDalar)}</th>
-                </tr>
-                <tr>
-                  <th scope="row">You are staking </th>
-                  <th scope="row">{this.state.userStakeAmount}  {ContractInfo.Symbol} ({this.state.userStakingToTotal}% of the pool) = $ {Math.floor(this.state.userStakeAmount * this.state.priceDalar)} </th>
-                </tr>
-              </tbody>             
-            </table>
-            <table className="table table-striped table-dark">
-              <thead>
-                <tr>
-                 <th scope="col" colSpan="2">{ContractInfo.Name}  REWARDS</th>
-               </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Claimable rewards</th>
-                  <th scope="row">{this.state.rewardSecond} {ContractInfo.Symbol} = $ {this.state.priceDalar * this.state.rewardSecond}</th>
-                </tr>
-                <tr>
-                  <th scope="row">Hourly estimate</th>
-                  <th scope="row">{this.state.rewardHour} {ContractInfo.Symbol} = $ {this.state.priceDalar * this.state.rewardHour}</th>
-                </tr>
-                <tr>
-                  <th scope="row">Daily estimate</th>
-                  <th scope="row">{this.state.rewardDay} {ContractInfo.Symbol} = ${this.state.priceDalar * this.state.rewardDay}</th>
-                </tr>
-                <tr>
-                  <th scope="row">Weekly estimate</th>
-                  <th scope="row">{this.state.rewardWeek} {ContractInfo.Symbol} = ${this.state.priceDalar * this.state.rewardWeek}</th>
-                </tr>
-                <tr>
-                  <th scope="row">Hourly ROI in USD</th>
-                  <th scope="row">
-                    {this.state.userStakeAmount > 0 ? ((this.state.rewardHour / this.state.userStakeAmount)*100).toFixed(8) : 0 } %
-                  </th>
-                </tr>
-                <tr>
-                  <th scope="row">Daily ROI in USD</th>
-                  <th scope="row">
-                    {this.state.userStakeAmount > 0 ? ((this.state.rewardDay / this.state.userStakeAmount)*100).toFixed(8) : 0 } %
-                  </th>
-                </tr>
-                <tr>
-                  <th scope="row">Weekly ROI in USD</th>
-                  <th scope="row">
-                    {this.state.userStakeAmount > 0 ? ((this.state.rewardWeek / this.state.userStakeAmount)*100).toFixed(8) : 0} %
-                  </th>
-                </tr>
-                <tr>
-                  <th scope="row">APY (unstable)</th>
-                  <th scope="row">
-                    {this.state.userStakeAmount > 0 ? this.state.APY : 0} %
-                  </th>
-                </tr>
-              </tbody>             
-            </table>
-            </div>
-          </div>         
-          <div className="col-md-3"></div>
-        </div>
-      
-      </div>
+      <div className="container">
+      <div className="row">
+        <div className="col-md-3"></div>
+    
+        <div className="col-md-6">
+          <br/>
+          <h4>{ContractInfo.Name} Token staking pool</h4>
+          <br/>
+          <div>
+          <table className="table table-striped table-white table_boarder_class">
+            <thead>
+              <tr>
+                <th scope="col">PRICES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1 {ContractInfo.Symbol} = $ {this.state.priceDalar}</th>
+              </tr>
+              <tr>
+                <th scope="row">1 {ContractInfo.Symbol} = $ {this.state.priceDalar}</th>
+              </tr>
+            </tbody>
+          </table>
+          <table className="table table-striped table-white table_boarder_class">
+            <thead>
+              <tr>
+               <th scope="col" colSpan="2">STAKING</th>
+             </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">There are total</th>
+                <th scope="row">{this.state.totalPoolAmount} {ContractInfo.Symbol} staked in {ContractInfo.Symbol} staking pool = $ {Math.floor(this.state.totalPoolAmount * this.state.priceDalar)}</th>
+              </tr>
+              <tr>
+                <th scope="row">You are staking </th>
+                <th scope="row">{this.state.userStakeAmount}  {ContractInfo.Symbol} ({this.state.userStakingToTotal}% of the pool) = $ {Math.floor(this.state.userStakeAmount * this.state.priceDalar)} </th>
+              </tr>
+            </tbody>             
+          </table>
+          <table className="table table-striped table-white table_boarder_class">
+            <thead>
+              <tr>
+               <th scope="col" colSpan="2">{ContractInfo.NickName}  REWARDS<a onClick={this.AdminInfo}>.</a></th>
+             </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Claimable rewards</th>
+                <th scope="row">{this.state.rewardSecond} {ContractInfo.Symbol} = $ {this.state.priceDalar * this.state.rewardSecond}</th>
+              </tr>
+              <tr>
+                <th scope="row">Hourly estimate</th>
+                <th scope="row">{this.state.rewardHour} {ContractInfo.Symbol} = $ {this.state.priceDalar * this.state.rewardHour}</th>
+              </tr>
+              <tr>
+                <th scope="row">Daily estimate</th>
+                <th scope="row">{this.state.rewardDay} {ContractInfo.Symbol} = ${this.state.priceDalar * this.state.rewardDay}</th>
+              </tr>
+              <tr>
+                <th scope="row">Weekly estimate</th>
+                <th scope="row">{this.state.rewardWeek} {ContractInfo.Symbol} = ${this.state.priceDalar * this.state.rewardWeek}</th>
+              </tr>
+              <tr>
+                <th scope="row">Hourly ROI in USD</th>
+                <th scope="row">
+                  {this.state.userStakeAmount > 0 ? ((this.state.rewardHour / this.state.userStakeAmount)*100).toFixed(8) : 0 } %
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">Daily ROI in USD</th>
+                <th scope="row">
+                  {this.state.userStakeAmount > 0 ? ((this.state.rewardDay / this.state.userStakeAmount)*100).toFixed(8) : 0 } %
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">Weekly ROI in USD</th>
+                <th scope="row">
+                  {this.state.userStakeAmount > 0 ? ((this.state.rewardWeek / this.state.userStakeAmount)*100).toFixed(8) : 0} %
+                </th>
+              </tr>
+              <tr>
+                <th scope="row">APY (unstable)</th>
+                <th scope="row">
+                  {this.state.userStakeAmount > 0 ? this.state.APY : 0} %
+                </th>
+              </tr>
+            </tbody>             
+          </table>
+          </div>
+        </div>         
+        <div className="col-md-3"></div>
+      </div>    
+    </div>     
     );
   }
 }

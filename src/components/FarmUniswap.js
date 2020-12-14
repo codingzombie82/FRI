@@ -277,50 +277,38 @@ export class FarmUniswap extends Component {
    var _showStake = false;
  
    var _userRequestAmount = 0;
-   console.log('1');
      //유저가 토큰을 가지고 있다면
      if(_userTokenBalance > 0){
-       console.log('2');
        //스테이킹을 하고 있다면
        if(_stakingAmount > 0){
-         console.log('3');
          //리워드 갯수를 보유한다면
          _showClaim = true;
          _showUnstake = true;
 
        }else{//스테이킹을 하지 않고 있다면
          //리워드 갯수를 보유한다면
-         console.log('4');
          if(_rewardAmount > 0){
            _showClaim = true;
-           console.log('5');
          }else{ //리워드 갯수가 없다면
            _showClaim = false;
-           console.log('6');
          }
          _showUnstake = false;
-         console.log('7');
        }
-       console.log(apporveTokenBalance);
-       console.log(_userTokenBalance);
+
        if(Math.abs(apporveTokenBalance) > Math.abs(_userTokenBalance)){
          _showApprove = false;
-         if(_isRunning && _stakingAmount == 0){
+         if(_isRunning && (_stakingAmount === 0)){
            _showStake = true;
-           console.log('88');
          }else{
            _showStake = false;
-           console.log('99');
          }
        }else{
          //approve 할 양
          _userRequestAmount  = _userTokenBalance;
-         if(_isRunning && _stakingAmount == 0){
+         if(_isRunning && (_stakingAmount === 0)){
            _showApprove = true;
-           console.log('10');
          }else{
            _showApprove = false;
-           console.log('11');
          }
        }
      }else{ //유저가 토큰이 없다면
@@ -329,23 +317,19 @@ export class FarmUniswap extends Component {
          //리워드 갯수를 보유한다면
          if(_rewardAmount > 0){
            _showClaim = true;
-           console.log('8');
          }
          _showUnstake = true;
        }else{//스테이킹을 하지 않고 있다면
          //리워드 갯수를 보유한다면
          if(_rewardAmount > 0){
            _showClaim = true;
-           console.log('9');
          }else{ //리워드 갯수가 없다면
            _showClaim = false;
-           console.log('10');
          }
          _showUnstake = false;
        }
        _showApprove = false;
        _showStake = false;
-       console.log('11');
      } 
 
   
@@ -407,7 +391,7 @@ export class FarmUniswap extends Component {
               <ReactInterval timeout={1000} enabled={true}
               callback={() => this.setState({count: this.state.count + 1})} />
 
-              {(this.state.showUnstake && this.state.userStakeTime > 0) && (<p>Your Reward : { ((this.state.userStakeTime + this.state.count) * this.state.rewordSecond).toFixed(8)} (About) </p>)}
+              {(this.state.showUnstake && this.state.userStakeTime > 0) && (<p>Your Reward : { ((this.state.userStakeTime + this.state.count) * this.state.rewordSecond).toFixed(8)}</p>)}
               {this.state.showStake && (<button className="btn btn-warning" onClick={this.StakingToken}>Stake</button>)}
               {this.state.showUnstake && (" ")}
               {this.state.showUnstake && (<button className="btn btn-warning" onClick={this.UnstakingToken}>Unstake</button>)}

@@ -360,7 +360,7 @@ export class AdminInfo extends Component {
           }
           this.state.teamCurrentReward = _rewardAmount;
         }
-      }else if(_ownerAddress == accounts[0]){
+      }else if(_ownerAddress === accounts[0]){
         this.state.isAdmin = true;
       }else{
         console.log('teampool not');

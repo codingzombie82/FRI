@@ -16,11 +16,10 @@ import { AdminInfo } from './components/AdminInfo';
 // import SimpleStorageContract from "./contracts/SimpleStorage.json";
 // import getWeb3 from "./getWeb3";
 
-
-import "./App.css";
+// import "./App.css";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  state = { storageValue: 0, web3: null, accounts: null, contract: null, price : 0 };
 
   render() {
     // if (!this.state.web3) {
