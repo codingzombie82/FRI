@@ -315,7 +315,7 @@ export class FarmToken extends Component {
         console.log(_userTokenBalance);
         console.log('_isRunning : '+ _isRunning);
         console.log(_stakingAmount);
-        if(Math.abs(apporveTokenBalance) > Math.abs(_userTokenBalance)){
+        if(Math.abs(apporveTokenBalance) >= Math.abs(_userTokenBalance)){
           _showApprove = false;
           if(_isRunning && _stakingAmount === 0){
             _showStake = true;
