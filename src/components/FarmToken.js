@@ -311,10 +311,10 @@ export class FarmToken extends Component {
           _showUnstake = false;
           console.log('7');
         }
-        console.log(apporveTokenBalance);
-        console.log(_userTokenBalance);
+        console.log('apporveTokenBalance :' + apporveTokenBalance);
+        console.log('_userTokenBalance :' + _userTokenBalance);
         console.log('_isRunning : '+ _isRunning);
-        console.log(_stakingAmount);
+        console.log('_stakingAmount : '+_stakingAmount);
         if(Math.abs(apporveTokenBalance) >= Math.abs(_userTokenBalance)){
           _showApprove = false;
           if(_isRunning && _stakingAmount === 0){

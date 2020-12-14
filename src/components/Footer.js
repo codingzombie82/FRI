@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 // import { Link } from 'react-router-dom';
 import ContractInfo from "../ABI/Token.json";
-
+import imageClose from "../asset/images/shapes/close-1-1.png"
 
 export class Footer extends Component {
   static displayName = Footer.name;
@@ -22,7 +22,7 @@ export class Footer extends Component {
       <div className="side-menu__block-inner ">
           <div className="side-menu__top justify-content-end">
               <a href="#" className="side-menu__toggler side-menu__close-btn"><img
-                      src="assets/images/shapes/close-1-1.png" alt=""/></a>
+                      src={imageClose} alt=""/></a>
           </div>
 
           <nav className="mobile-nav__container">
